@@ -36,6 +36,13 @@ func GetUsers() []User {
 		users = append(users, model)
 	}
 	defer rows.Close()
-	defer db.Close()
 	return users
+}
+
+func DeleteUser(id string) []User{
+	_, err := db.Query("delete from users where id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return GetUsers()
 }

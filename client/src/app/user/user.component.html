@@ -1,8 +1,23 @@
-<h1>John Smith</h1>
-<p>Software Developer</p>
-<ul>
-  <li>html</li>
-  <li>css</li>
-  <li>javascript</li>
-  <li>golang</li>
-</ul>
+<div class="container-fluid">
+  <div class="form-group"><button class="btn btn-secondary"><i class="fa fa-plus"></i></button></div>
+  <div class="table-resposive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | async">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>
+          <button (click)="deleteUser(user.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

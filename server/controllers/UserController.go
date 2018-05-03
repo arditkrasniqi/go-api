@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 
 	"../models"
+	"log"
 )
 
 func GetUsersEndpoint(w http.ResponseWriter, req *http.Request) {
@@ -16,5 +17,17 @@ func GetUsersEndpoint(w http.ResponseWriter, req *http.Request) {
 func DeleteUserEndpoint(w http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
 	users := models.DeleteUser(params["id"])
+	json.NewEncoder(w).Encode(users)
+}
+
+func UpdateUserEndpoint(w http.ResponseWriter, req *http.Request){
+	decoder := json.NewDecoder(req.Body)
+	var user *models.User
+	err := decoder.Decode(&user)
+	if err != nil {
+		log.Fatal(err)
+	}
+	params := mux.Vars(req)
+	users := models.UpdateUser(params["id"], *user)
 	json.NewEncoder(w).Encode(users)
 }

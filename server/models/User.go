@@ -7,7 +7,7 @@ import (
 )
 
 type User struct {
-	ID       int    `json:"id,omitempty"`
+	ID       string `json:"id,omitempty"`
 	Username string `json:"username,omitempty"`
 	Password string `json:"password,omitempty"`
 }
@@ -39,8 +39,16 @@ func GetUsers() []User {
 	return users
 }
 
-func DeleteUser(id string) []User{
+func DeleteUser(id string) []User {
 	_, err := db.Query("delete from users where id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return GetUsers()
+}
+
+func UpdateUser(id string, user User) []User {
+	_, err := db.Query("update users set username = ?, password = ? where id = ?", user.Username, user.Password, id)
 	if err != nil {
 		log.Fatal(err)
 	}

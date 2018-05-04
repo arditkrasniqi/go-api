@@ -54,3 +54,11 @@ func UpdateUser(id string, user User) []User {
 	}
 	return GetUsers()
 }
+
+func CreateUser(user User) []User{
+	_, err := db.Query("insert into users(`username`,`password`) values(?,?)", user.Username, user.Password)
+	if err != nil{
+		log.Fatal(err)
+	}
+	return GetUsers()
+}

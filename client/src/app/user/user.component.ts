@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
   username: string;
   password: string;
   userId: number;
+  modalData: string;
 
   constructor(private userService: UserService) {
   }
@@ -37,6 +38,19 @@ export class UserComponent implements OnInit {
   }
 
   activeUser(userId: number) {
+    this.setModalData('editUser');
     this.userId = userId;
+  }
+
+  newUser() {
+    const user = {
+      username: this.username,
+      password: this.password
+    };
+    this.users = this.userService.newUser(user);
+  }
+
+  setModalData(data: string) {
+    this.modalData = data;
   }
 }

@@ -31,3 +31,14 @@ func UpdateUserEndpoint(w http.ResponseWriter, req *http.Request){
 	users := models.UpdateUser(params["id"], *user)
 	json.NewEncoder(w).Encode(users)
 }
+
+func NewUserEndpoint(w http.ResponseWriter, req *http.Request){
+	decoder := json.NewDecoder(req.Body)
+	var user *models.User
+	err := decoder.Decode(&user)
+	if err != nil {
+		log.Fatal(err)
+	}
+	users := models.CreateUser(*user)
+	json.NewEncoder(w).Encode(users)
+}

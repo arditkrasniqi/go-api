@@ -26,4 +26,8 @@ export class UserService {
   updateUser(id: number, user: object) {
     return this.http.patch(`/api/update-user/${id}`, UserService.mapUserFields(user));
   }
+
+  newUser(user) {
+    return this.http.post('/api/new-user', user);
+  }
 }

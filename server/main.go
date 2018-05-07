@@ -1,18 +1,19 @@
 package main
 
 import (
-	"log"
-	"net/http"
-
-	"github.com/gorilla/mux"
-	"./controllers"
+	"./system/app"
+	//"flag"
 )
 
+//var port string
+
+//func init(){
+//	flag.StringVar(&port, "port","9000","Assign port")
+//	flag.Parse()
+//}
+
 func main() {
-	router := mux.NewRouter()
-	router.HandleFunc("/users", controllers.GetUsersEndpoint).Methods("GET")
-	router.HandleFunc("/delete-user/{id}", controllers.DeleteUserEndpoint).Methods("DELETE")
-	router.HandleFunc("/update-user/{id}", controllers.UpdateUserEndpoint).Methods("PATCH")
-	router.HandleFunc("/new-user", controllers.NewUserEndpoint).Methods("POST")
-	log.Fatal(http.ListenAndServe(":9000", router))
+	server := app.NewServer()
+	//server.Start(port)
+	server.Start()
 }

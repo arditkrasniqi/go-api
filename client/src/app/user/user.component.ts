@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../services/user-service';
+import {Service} from '../services/service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -14,15 +14,15 @@ export class UserComponent implements OnInit {
   userId: number;
   modalData: string;
 
-  constructor(private userService: UserService) {
+  constructor(private service: Service) {
   }
 
   ngOnInit() {
-    this.users = this.userService.getUsers();
+    this.users = this.service.getUsers();
   }
 
   deleteUser(id: number) {
-    this.users = this.userService.deleteUser(id);
+    this.users = this.service.deleteUser(id);
   }
 
   updateUser() {
@@ -30,16 +30,14 @@ export class UserComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    this.users = this.userService.updateUser(this.userId, user);
-    setTimeout(() => {
-      this.username = '';
-      this.password = '';
-    }, 1000);
+    this.users = this.service.updateUser(this.userId, user);
   }
 
-  activeUser(userId: number) {
+  activeUser(user: any) {
     this.setModalData('editUser');
-    this.userId = userId;
+    this.userId = user.id;
+    this.username = user.username;
+    this.password = user.password;
   }
 
   newUser() {
@@ -47,10 +45,13 @@ export class UserComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    this.users = this.userService.newUser(user);
+    this.users = this.service.newUser(user);
   }
 
   setModalData(data: string) {
+    if (data === 'newUser') {
+      this.username = this.password = '';
+    }
     this.modalData = data;
   }
 }

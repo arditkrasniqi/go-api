@@ -8,15 +8,19 @@ import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {UserComponent} from './user/user.component';
 import {PostComponent} from './post/post.component';
-import {UserService} from './services/user-service';
+import {Service} from './services/service';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: PostComponent
+  },
   {
     path: 'user',
     component: UserComponent
   },
   {
-    path: 'post',
+    path: 'posts',
     component: PostComponent
   }
 ];
@@ -34,7 +38,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    UserService
+    Service
   ],
   bootstrap: [AppComponent]
 })

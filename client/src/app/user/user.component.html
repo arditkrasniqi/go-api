@@ -6,16 +6,16 @@
       <tr>
         <th>ID</th>
         <th>Username</th>
-        <th>Delete</th>
+        <th class="text-right">Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let u of users | async">
         <td>{{u.id}}</td>
         <td>{{u.username}}</td>
-        <td>
+        <td class="text-right">
           <button (click)="deleteUser(u.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-          <button (click)="activeUser(u.id)" class="btn btn-primary" data-toggle="modal" data-target="#userModal"><i class="fa fa-edit"></i></button>
+          <button (click)="activeUser(u)" class="btn btn-primary" data-toggle="modal" data-target="#userModal"><i class="fa fa-edit"></i></button>
         </td>
       </tr>
       </tbody>

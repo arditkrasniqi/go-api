@@ -13,7 +13,7 @@ func Open() *sql.DB {
 	if db != nil {
 		return db
 	} else {
-		db, _ = sql.Open("mysql", "root:krasniqi01@tcp(localhost:3306)/portal")
+		db, _ = sql.Open("mysql", "root:@tcp(localhost:3306)/portal")
 		dberror := db.Ping()
 		if dberror != nil {
 			log.Fatal(dberror)

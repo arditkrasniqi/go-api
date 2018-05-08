@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { UserService.TsService } from './user-service.ts.service';
+import { UserService.TsService } from './service.ts.service';
 
-describe('UserService.TsService', () => {
+describe('Service.TsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [UserService.TsService]

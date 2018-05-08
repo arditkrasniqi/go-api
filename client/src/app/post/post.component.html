@@ -1,19 +1,47 @@
-<div class="row">
-  <div class="col-6 offset-3">
+<div class="container">
+  <div *ngIf="showNewUserForm">
+    <div class="form-group">
+      <button class="btn btn-secondary" (click)="toggleNewUserForm()"><i class="fa fa-arrow-left"></i></button>
+    </div>
     <h1>Make a post</h1>
     <form action="">
       <div class="form-group">
         <label for="">Title</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="postTitle">
       </div>
       <div class="form-group">
         <label for="">Content</label>
-        <textarea type="text" class="form-control"></textarea>
+        <textarea [(ngModel)]="postContent" type="text" class="form-control"></textarea>
       </div>
       <div class="form-group">
         <label for="">&nbsp;</label>
         <button class="btn btn-primary">Post</button>
       </div>
     </form>
+  </div>
+  <div *ngIf="!showNewUserForm">
+    <div (click)="toggleNewUserForm()" class="form-group">
+      <button  class="btn btn-secondary"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Posted At</th>
+          <th class="text-right">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="text-right"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
